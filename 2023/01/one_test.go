@@ -2,7 +2,7 @@ package main
 
 import "testing"
 
-func TestCalibrationValueMultipleDigit(t *testing.T) {
+func Test_RecoverCalibrationValue_MultipleDigit(t *testing.T) {
 	line := "a7dasfj0ie08380asjdf0923b"
 
 	expected := 73
@@ -13,7 +13,7 @@ func TestCalibrationValueMultipleDigit(t *testing.T) {
 	}
 }
 
-func TestCalibrationValueSingleDigit(t *testing.T) {
+func Test_RecoverCalibrationValue_SingleDigit(t *testing.T) {
 	line := "a7b"
 
 	expected := 77

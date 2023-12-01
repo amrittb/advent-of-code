@@ -3,43 +3,42 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"log"
 	"os"
 	"unicode"
 )
 
-func panicIfErr(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
-
 func main() {
-	sum := sumCalibrationValues("01-input.txt")
-	fmt.Printf("Sum of calibration values: %v\n", sum)
+	args := os.Args[1:]
+	if len(args) != 1 {
+		log.Fatalln("Invalid args. Please provide input filename.")
+	}
 
-	sum = sumCalibrationValues("01-test-input.txt")
-	fmt.Printf("Sum of calibration values: %v\n", sum)
-}
+	fileName := args[0]
+	fileInfo, err := os.Stat(fileName)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	if fileInfo.IsDir() {
+		log.Fatalf("File %v is a directory, not a file.\n", fileName)
+	}
 
-func sumCalibrationValues(fileName string) int {
 	file, err := os.Open(fileName)
-	panicIfErr(err)
+	if err != nil {
+		log.Fatalln(err)
+	}
 	defer file.Close()
 
 	scanner := bufio.NewScanner(file)
 	scanner.Split(bufio.ScanLines)
 
-	var lines []string
-	for scanner.Scan() {
-		lines = append(lines, scanner.Text())
-	}
-
 	sum := 0
-	for _, line := range lines {
+	for scanner.Scan() {
+		line := scanner.Text()
 		sum += RecoverCalibrationValue(line)
 	}
 
-	return sum
+	fmt.Printf("Answer: %v\n", sum)
 }
 
 func RecoverCalibrationValue(line string) int {
@@ -66,6 +65,10 @@ func RecoverCalibrationValue(line string) int {
 			rNum = int(rRune - '0')
 		} else {
 			r--
+		}
+
+		if l > r {
+			break
 		}
 	}
 
