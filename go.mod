@@ -1,3 +1,3 @@
-module github.com/amrittb/advent-of-code
+module github.com/amrittb/adventofcode
 
 go 1.21.3
