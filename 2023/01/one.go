@@ -8,7 +8,7 @@ import (
 	"unicode"
 )
 
-func main() {
+func main2() {
 	args := os.Args[1:]
 	if len(args) != 1 {
 		log.Fatalln("Invalid args. Please provide input filename.")
