@@ -33,6 +33,7 @@ func main() {
 			},
 			2: {
 				1: twentythreedaytwo.SumPossibleGameIds,
+				2: twentythreedaytwo.SumOfPowerOfMinCubes,
 			},
 		},
 	}

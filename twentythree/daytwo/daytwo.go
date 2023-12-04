@@ -102,3 +102,34 @@ func SumPossibleGameIds(games []string) int {
 
 	return sum
 }
+
+func SumOfPowerOfMinCubes(games []string) int {
+	sum := 0
+
+	for _, game := range games {
+		_, draws := parseGameData(game)
+
+		minBlueRequired := 0
+		minRedRequired := 0
+		minGreenRequired := 0
+
+		for _, draw := range draws {
+			if draw.BlueCount > minBlueRequired {
+				minBlueRequired = draw.BlueCount
+			}
+
+			if draw.RedCount > minRedRequired {
+				minRedRequired = draw.RedCount
+			}
+
+			if draw.GreenCount > minGreenRequired {
+				minGreenRequired = draw.GreenCount
+			}
+		}
+
+		// Add power to the sum
+		sum += (minBlueRequired * minRedRequired * minGreenRequired)
+	}
+
+	return sum
+}
