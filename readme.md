@@ -1,10 +1,9 @@
 # Advent Of Code
 
-
 Running code
 ```sh
 # test
-go run 2023/01/one.go 2023/01/one_test.txt
+go run main.go -day 1 -part 1 -file twentythree/dayone/dayone_test.txt
 # input
-go run 2023/01/one.go 2023/01/one_input.txt
+go run main.go -day 1 -part 1 -file twentythree/dayone/dayone_input.txt
 ```
