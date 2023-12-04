@@ -1,5 +1,10 @@
 # Advent Of Code
 
+Running Tests
+```sh
+make test
+```
+
 Running code
 ```sh
 # test
