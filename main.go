@@ -8,6 +8,7 @@ import (
 	"os"
 
 	twentythreedayone "github.com/amrittb/adventofcode/twentythree/dayone"
+	twentythreedaytwo "github.com/amrittb/adventofcode/twentythree/daytwo"
 )
 
 type Process func([]string) int
@@ -29,6 +30,9 @@ func main() {
 			1: {
 				1: twentythreedayone.RecoverCalibrationValue,
 				2: twentythreedayone.RecoverAlphaNumericCalibrationValue,
+			},
+			2: {
+				1: twentythreedaytwo.SumPossibleGameIds,
 			},
 		},
 	}
