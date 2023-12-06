@@ -87,3 +87,91 @@ func SumOfPartNumsOfEngineSchemantic(lines []string) int {
 
 	return sum
 }
+
+type IntSet map[int]bool
+
+func (set *IntSet) Add(val *int) {
+	if val != nil {
+		(*set)[*val] = true
+	}
+}
+
+func SumOfGearRatios(lines []string) int {
+	numRow := len(lines)
+	numCol := len(lines[0]) // The column size is always same for ALL rows
+
+	numMatrix := make([][]*int, numRow)
+	for row := range numMatrix {
+		numMatrix[row] = make([]*int, numCol)
+	}
+
+	// Create 2D array with numbers
+	for row, line := range lines {
+		lineRunes := []rune(line)
+
+		var tmpNum *int
+		numScanned := false
+		for col, val := range lineRunes {
+			if unicode.IsDigit(val) {
+				if tmpNum == nil {
+					tmpNum = new(int)
+				}
+
+				*tmpNum = *tmpNum * 10 + int(val - '0')
+
+				numMatrix[row][col] = tmpNum
+				numScanned = true
+			} else {
+				if numScanned {
+					tmpNum =  nil
+				}
+				numScanned = false
+			}
+		}
+	}
+
+	sum := 0
+	for row, line := range lines {
+		lineRunes := []rune(line)
+
+		for col, val := range lineRunes {
+			if val == '*' {
+				// Gear found, so populate the find adjacent arrays
+				prevRow := max(row - 1, 0)
+				nextRow := min(row + 1, numRow)
+				prevCol := max(col - 1, 0)
+				nextCol := min(col + 1, numCol)
+
+				adjacentNums := make(IntSet)
+
+				// Previous row
+				adjacentNums.Add(numMatrix[prevRow][prevCol])
+				adjacentNums.Add(numMatrix[prevRow][col])
+				adjacentNums.Add(numMatrix[prevRow][nextCol])
+
+				// Current row
+				adjacentNums.Add(numMatrix[row][prevCol])
+				adjacentNums.Add(numMatrix[row][col])
+				adjacentNums.Add(numMatrix[row][nextCol])
+
+				// Next row
+				adjacentNums.Add(numMatrix[nextRow][prevCol])
+				adjacentNums.Add(numMatrix[nextRow][col])
+				adjacentNums.Add(numMatrix[nextRow][nextCol])
+
+				if len(adjacentNums) == 2 {
+					gearRatio := 1
+
+					for num := range adjacentNums {
+						gearRatio *= num
+					}
+
+					sum += gearRatio
+				}
+			}
+		}
+	}
+
+	return sum
+}
+

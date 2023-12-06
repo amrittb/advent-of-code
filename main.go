@@ -38,6 +38,7 @@ func main() {
 			},
 			3: {
 				1: twentythreedaythree.SumOfPartNumsOfEngineSchemantic,
+				2: twentythreedaythree.SumOfGearRatios,
 			},
 		},
 	}
