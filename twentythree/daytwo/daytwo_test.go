@@ -11,7 +11,7 @@ func Test_SumPossibleGameIds(t *testing.T) {
 	}
 
 	expected := 2
-	actual := SumPossibleGameIds(games)
+	actual := SumOfPossibleGameIds(games)
 
 	if actual != expected {
 		t.Errorf("got %v but wanted %v\n", actual, expected)

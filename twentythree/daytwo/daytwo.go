@@ -77,7 +77,7 @@ func parseGameData(gameData string) (int, []cubeSelection) {
 	return parseGameId(res[0]), parseCubeSelection(res[1])
 }
 
-func SumPossibleGameIds(games []string) int {
+func SumOfPossibleGameIds(games []string) int {
 	maxRedCount := 12
 	maxGreenCount := 13
 	maxBlueCount := 14
