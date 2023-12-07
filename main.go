@@ -43,6 +43,7 @@ func main() {
 			},
 			4: {
 				1: twentythreedayfour.SumOfPointsOfScratchCard,
+				2: twentythreedayfour.SumOfScratchCards,
 			},
 		},
 	}
