@@ -2,21 +2,9 @@ package daythree
 
 import (
 	"unicode"
+
+	"github.com/amrittb/adventofcode/integer"
 )
-
-func min(a, b int) int {
-	if a <= b {
-		return a
-	}
-	return b
-}
-
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
 
 func SumOfPartNumsOfEngineSchemantic(lines []string) int {
 	numRow := len(lines)
@@ -36,10 +24,10 @@ func SumOfPartNumsOfEngineSchemantic(lines []string) int {
 		for col, val := range lineRunes {
 			if ! unicode.IsDigit(val) && val != '.' {
 				// Not a valid symbol, so populate the validPos array
-				prevRow := max(row - 1, 0)
-				nextRow := min(row + 1, numRow)
-				prevCol := max(col - 1, 0)
-				nextCol := min(col + 1, numCol)
+				prevRow := integer.Max(row - 1, 0)
+				nextRow := integer.Min(row + 1, numRow)
+				prevCol := integer.Max(col - 1, 0)
+				nextCol := integer.Min(col + 1, numCol)
 
 				// Previous row
 				validPos[prevRow][prevCol] = true
@@ -88,14 +76,6 @@ func SumOfPartNumsOfEngineSchemantic(lines []string) int {
 	return sum
 }
 
-type IntSet map[int]bool
-
-func (set *IntSet) Add(val *int) {
-	if val != nil {
-		(*set)[*val] = true
-	}
-}
-
 func SumOfGearRatios(lines []string) int {
 	numRow := len(lines)
 	numCol := len(lines[0]) // The column size is always same for ALL rows
@@ -137,27 +117,27 @@ func SumOfGearRatios(lines []string) int {
 		for col, val := range lineRunes {
 			if val == '*' {
 				// Gear found, so populate the find adjacent arrays
-				prevRow := max(row - 1, 0)
-				nextRow := min(row + 1, numRow)
-				prevCol := max(col - 1, 0)
-				nextCol := min(col + 1, numCol)
+				prevRow := integer.Max(row - 1, 0)
+				nextRow := integer.Min(row + 1, numRow)
+				prevCol := integer.Max(col - 1, 0)
+				nextCol := integer.Min(col + 1, numCol)
 
-				adjacentNums := make(IntSet)
+				adjacentNums := make(integer.IntSet)
 
 				// Previous row
-				adjacentNums.Add(numMatrix[prevRow][prevCol])
-				adjacentNums.Add(numMatrix[prevRow][col])
-				adjacentNums.Add(numMatrix[prevRow][nextCol])
+				adjacentNums.AddIfNotNil(numMatrix[prevRow][prevCol])
+				adjacentNums.AddIfNotNil(numMatrix[prevRow][col])
+				adjacentNums.AddIfNotNil(numMatrix[prevRow][nextCol])
 
 				// Current row
-				adjacentNums.Add(numMatrix[row][prevCol])
-				adjacentNums.Add(numMatrix[row][col])
-				adjacentNums.Add(numMatrix[row][nextCol])
+				adjacentNums.AddIfNotNil(numMatrix[row][prevCol])
+				adjacentNums.AddIfNotNil(numMatrix[row][col])
+				adjacentNums.AddIfNotNil(numMatrix[row][nextCol])
 
 				// Next row
-				adjacentNums.Add(numMatrix[nextRow][prevCol])
-				adjacentNums.Add(numMatrix[nextRow][col])
-				adjacentNums.Add(numMatrix[nextRow][nextCol])
+				adjacentNums.AddIfNotNil(numMatrix[nextRow][prevCol])
+				adjacentNums.AddIfNotNil(numMatrix[nextRow][col])
+				adjacentNums.AddIfNotNil(numMatrix[nextRow][nextCol])
 
 				if len(adjacentNums) == 2 {
 					gearRatio := 1

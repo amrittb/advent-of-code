@@ -10,6 +10,7 @@ import (
 	twentythreedayone "github.com/amrittb/adventofcode/twentythree/dayone"
 	twentythreedaythree "github.com/amrittb/adventofcode/twentythree/daythree"
 	twentythreedaytwo "github.com/amrittb/adventofcode/twentythree/daytwo"
+	twentythreedayfour "github.com/amrittb/adventofcode/twentythree/dayfour"
 )
 
 type Process func([]string) int
@@ -39,6 +40,9 @@ func main() {
 			3: {
 				1: twentythreedaythree.SumOfPartNumsOfEngineSchemantic,
 				2: twentythreedaythree.SumOfGearRatios,
+			},
+			4: {
+				1: twentythreedayfour.SumOfPointsOfScratchCard,
 			},
 		},
 	}
