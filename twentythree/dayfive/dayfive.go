@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"regexp"
-	"strconv"
 	"strings"
 
 	"github.com/amrittb/adventofcode/integer"
@@ -72,7 +71,7 @@ func FindLowestLocation(lines []string) int {
       log.Fatalf("Selected Slice should not be nil, but is.\n")
     }
     // Didn't match, so parse numbers
-    nums := convertToIntSlice(line, " ")
+    nums := integer.ConvertToIntSlice(line, " ")
     if len(nums) != 3 {
       log.Fatalf("Parsed numbers should be equal to three: %v\n", nums)
     }
@@ -165,7 +164,7 @@ func FindLowestLocationOfSeedRanges(lines []string) int {
       log.Fatalf("Selected Slice should not be nil, but is.\n")
     }
     // Didn't match, so parse numbers
-    nums := convertToIntSlice(line, " ")
+    nums := integer.ConvertToIntSlice(line, " ")
     if len(nums) != 3 {
       log.Fatalf("Parsed numbers should be equal to three: %v\n", nums)
     }
@@ -202,21 +201,7 @@ func parseInitialSeeds(line string) []int {
     log.Fatalln("Invalid Inital Seeds Line: " + line)
   }
 
-  return convertToIntSlice(splitLine[1], " ")
-}
-
-func convertToIntSlice(s, sep string) []int {
-  ints := []int{}
-  intStrs := strings.Split(strings.Trim(s, " "), sep) 
-  for _, intStr := range intStrs {
-    i, err := strconv.Atoi(intStr)
-    if err != nil {
-      log.Fatalln(err)
-    }
-    ints = append(ints, i)
-  }
-
-  return ints
+  return integer.ConvertToIntSlice(splitLine[1], " ")
 }
 
 func convertValue(conversionChart [][]int, val int) int {
