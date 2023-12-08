@@ -48,6 +48,7 @@ func main() {
 			},
 			5: {
 				1: twentythreedayfive.FindLowestLocation,
+				2: twentythreedayfive.FindLowestLocationOfSeedRanges,
 			},
 		},
 	}
