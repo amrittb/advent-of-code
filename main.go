@@ -8,9 +8,10 @@ import (
 	"os"
 
 	twentythreedayone "github.com/amrittb/adventofcode/twentythree/dayone"
-	twentythreedaythree "github.com/amrittb/adventofcode/twentythree/daythree"
 	twentythreedaytwo "github.com/amrittb/adventofcode/twentythree/daytwo"
+	twentythreedaythree "github.com/amrittb/adventofcode/twentythree/daythree"
 	twentythreedayfour "github.com/amrittb/adventofcode/twentythree/dayfour"
+	twentythreedayfive "github.com/amrittb/adventofcode/twentythree/dayfive"
 )
 
 type Process func([]string) int
@@ -44,6 +45,9 @@ func main() {
 			4: {
 				1: twentythreedayfour.SumOfPointsOfScratchCard,
 				2: twentythreedayfour.SumOfScratchCards,
+			},
+			5: {
+				1: twentythreedayfive.FindLowestLocation,
 			},
 		},
 	}
