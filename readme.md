@@ -1,5 +1,10 @@
 # Advent Of Code
 
+Notes to self:
+- Improve code structuring
+- Reimplement brute-force algorithms
+- Refactor and extract common functions to separate module
+
 Running Tests
 ```sh
 make test
