@@ -13,6 +13,7 @@ import (
 	twentythreedayfour "github.com/amrittb/adventofcode/twentythree/dayfour"
 	twentythreedayfive "github.com/amrittb/adventofcode/twentythree/dayfive"
 	twentythreedaysix "github.com/amrittb/adventofcode/twentythree/daysix"
+	twentythreedayseven "github.com/amrittb/adventofcode/twentythree/dayseven"
 )
 
 type Process func([]string) int
@@ -54,6 +55,10 @@ func main() {
 			6: {
 				1: twentythreedaysix.GetWinningCombinations,
 				2: twentythreedaysix.GetWinningCombinationsWithFixedKerning,
+			},
+			7: {
+				1: twentythreedayseven.TotalWinnings,
+				2: twentythreedayseven.TotalWinningsWithJoker,
 			},
 		},
 	}
