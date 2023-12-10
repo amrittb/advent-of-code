@@ -15,6 +15,7 @@ import (
 	twentythreedaysix "github.com/amrittb/adventofcode/twentythree/daysix"
 	twentythreedayseven "github.com/amrittb/adventofcode/twentythree/dayseven"
 	twentythreedayeight "github.com/amrittb/adventofcode/twentythree/dayeight"
+	twentythreedaynine "github.com/amrittb/adventofcode/twentythree/daynine"
 )
 
 type Process func([]string) int
@@ -64,6 +65,10 @@ func main() {
 			8: {
 				1: twentythreedayeight.GetStepsRequiredToEnd,
 				2: twentythreedayeight.GetStepsRequiredToZNodes,
+			},
+			9: {
+				1: twentythreedaynine.SumOfExtrapolatedValues,
+				2: twentythreedaynine.SumOfBackwardExtrapolatedValues,
 			},
 		},
 	}
