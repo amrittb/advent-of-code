@@ -14,6 +14,7 @@ import (
 	twentythreedayfive "github.com/amrittb/adventofcode/twentythree/dayfive"
 	twentythreedaysix "github.com/amrittb/adventofcode/twentythree/daysix"
 	twentythreedayseven "github.com/amrittb/adventofcode/twentythree/dayseven"
+	twentythreedayeight "github.com/amrittb/adventofcode/twentythree/dayeight"
 )
 
 type Process func([]string) int
@@ -59,6 +60,10 @@ func main() {
 			7: {
 				1: twentythreedayseven.TotalWinnings,
 				2: twentythreedayseven.TotalWinningsWithJoker,
+			},
+			8: {
+				1: twentythreedayeight.GetStepsRequiredToEnd,
+				2: twentythreedayeight.GetStepsRequiredToZNodes,
 			},
 		},
 	}
