@@ -16,6 +16,7 @@ import (
 	twentythreedayseven "github.com/amrittb/adventofcode/twentythree/dayseven"
 	twentythreedayeight "github.com/amrittb/adventofcode/twentythree/dayeight"
 	twentythreedaynine "github.com/amrittb/adventofcode/twentythree/daynine"
+	twentythreedayten "github.com/amrittb/adventofcode/twentythree/dayten"
 )
 
 type Process func([]string) int
@@ -69,6 +70,9 @@ func main() {
 			9: {
 				1: twentythreedaynine.SumOfExtrapolatedValues,
 				2: twentythreedaynine.SumOfBackwardExtrapolatedValues,
+			},
+			10: {
+				1: twentythreedayten.NumStepsOfFarthestPointInLoop,
 			},
 		},
 	}
