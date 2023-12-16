@@ -1,12 +1,5 @@
 package dayten
 
-import (
-	// "fmt"
-	"log"
-
-	"github.com/amrittb/adventofcode/integer"
-)
-
 type pipeType rune
 
 const (
@@ -82,61 +75,31 @@ func NumStepsOfFarthestPointInLoop(lines []string) int {
     },
   }
 
-  prevRow := integer.Max(startRow - 1, 0)
-  nextRow := integer.Min(startRow + 1, numRow - 1)
+  currRow := -1
+  currCol := -1
+  var lastMove movement
 
-  prevCol := integer.Max(startCol - 1, 0)
-  nextCol := integer.Min(startCol + 1, numCol - 1)
+  possibleMoves := []movement{NORTH, SOUTH, EAST, WEST}
 
-  currPos := [][]int{}
-
-  moves := []movement{}
-
-  northPipe := pipes[prevRow][startCol]
-  _, isNorthValid := nextMoveMap[NORTH][northPipe]; if isNorthValid {
-    currPos = append(currPos, []int{prevCol, startCol})
-    moves = append(moves, NORTH)
-  }
-
-  southPipe := pipes[nextRow][startCol]
-  _, isSouthValid := nextMoveMap[SOUTH][southPipe]; if isSouthValid {
-    currPos = append(currPos, []int{nextRow, startCol})
-    moves = append(moves, SOUTH)
-  }
-
-  eastPipe := pipes[startRow][nextCol]
-  _, isEastValid := nextMoveMap[EAST][eastPipe]; if isEastValid {
-    currPos = append(currPos, []int{startRow, nextCol})
-    moves = append(moves, EAST)
-  }
-
-  westPipe := pipes[startRow][prevCol]
-  _, isWestValid := nextMoveMap[WEST][westPipe]; if isWestValid {
-    currPos = append(currPos, []int{startRow, prevCol})
-    moves = append(moves, WEST)
-  }
-
-  if len(moves) != 2 {
-    log.Fatalf("Found less or more than 2 possible paths: %v", currPos)
+  for _, move := range possibleMoves {
+    r, c := getNextPosition(startRow, startCol, move)
+    nextPipe := pipes[r][c]
+    _, isMoveValid := nextMoveMap[move][nextPipe]; if isMoveValid {
+      currRow = r
+      currCol = c
+      lastMove = move
+      break
+    }
   }
 
   // Loop until the two positions merge together
   numSteps := 1
-  for true {
-    if currPos[0][0] == currPos[1][0] && currPos[0][1] == currPos[1][1] {
-      break
-    }
-    for i := 0; i < len(currPos); i++ {
-      currRow := currPos[i][0]
-      currCol := currPos[i][1]
-      moves[i] = nextMoveMap[moves[i]][pipes[currRow][currCol]]
-      nextRow, nextCol = getNextPosition(currRow, currCol, moves[i])
-      currPos[i][0] = nextRow
-      currPos[i][1] = nextCol
-    }
+  for !(currRow == startRow && currCol == startCol) {
+    lastMove = nextMoveMap[lastMove][pipes[currRow][currCol]]
+    currRow, currCol = getNextPosition(currRow, currCol, lastMove)
     numSteps++
   }
-  return numSteps
+  return numSteps / 2
 }
 
 func getNextPosition(r, c int, m movement) (int, int) {
