@@ -73,6 +73,7 @@ func main() {
 			},
 			10: {
 				1: twentythreedayten.NumStepsOfFarthestPointInLoop,
+				2: twentythreedayten.NumOfTilesEnclosed,
 			},
 		},
 	}
