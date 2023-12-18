@@ -1,8 +1,6 @@
 package dayeleven
 
 import (
-	"fmt"
-
 	"github.com/amrittb/adventofcode/integer"
 )
 
@@ -12,11 +10,17 @@ type coordinate struct {
 }
 
 func SumOfShortestDistanceBetweenGalaxies(cosmicMap []string) int {
-  // - Find galaxies
-  // - Expand the universe
-  // - Find galaxies and their positions
+  return sumOfShortestDistanceBetweenGalaxies(cosmicMap, 2)
+}
+
+func SumOfShortestDistanceBetweenOlderGalaxies(cosmicMap []string) int {
+  return sumOfShortestDistanceBetweenGalaxies(cosmicMap, 1_000_000)
+}
+
+func sumOfShortestDistanceBetweenGalaxies(cosmicMap []string, expansionRate int) int {
+  // - Find free x's and y's
+  // - Find galaxies and their expanded positions
   // - For each pair find their minimum distance & calculate the sum
-  
   galaxy := byte('#')
   lenY := len(cosmicMap)
   lenX := len(cosmicMap[0])
@@ -35,44 +39,27 @@ func SumOfShortestDistanceBetweenGalaxies(cosmicMap []string) int {
 
   newGalaxyCords := []coordinate{}
 
-  // New len = original len + delta len (total len - len of found galaxies in an axis)
-  newLenX := lenX + (lenX - len(galaxyXPositions))
-  newLenY := lenY + (lenY - len(galaxyYPositions))
-
-  newCosmicMap := make([][]byte, newLenY)
-
-  newY := 0
+  freeYCount := 0
   for y := 0; y < lenY; y++ {
-    newXMap := make([]byte, newLenX)
+    if !galaxyYPositions.Contains(y) {
+      freeYCount++
+      continue
+    }
 
-    newX := 0
+    freeXCount := 0
     for x := 0; x < lenX; x++ {
+      if !galaxyXPositions.Contains(x) {
+        freeXCount++
+        continue
+      }
+
       mapVal := cosmicMap[y][x]
 
       if mapVal == galaxy {
+        newX := x + freeXCount * (expansionRate - 1)
+        newY := y + freeYCount * (expansionRate - 1)
         newGalaxyCords = append(newGalaxyCords, coordinate{X: newX, Y: newY})
       }
-
-      newXMap[newX] = mapVal
-      newX++
-
-      // Expand in X-Axis
-      if !galaxyXPositions.Contains(x) {
-        newXMap[newX] = byte('.')
-        newX++
-      }
-    }
-
-    newCosmicMap[newY] = newXMap
-    newY++
-
-    if !galaxyYPositions.Contains(y) {
-      // 
-      anotherNewXMap := make([]byte, newLenX) 
-      copy(anotherNewXMap, newXMap) 
-
-      newCosmicMap[newY] = anotherNewXMap
-      newY++
     }
   }
 
@@ -86,35 +73,15 @@ func SumOfShortestDistanceBetweenGalaxies(cosmicMap []string) int {
   return sum
 }
 
-func printByteMatrixAsString(input [][]byte) {
-  for _, r := range input {
-    fmt.Println(string(r))
-  }
+func shortestPathDistance(c1, c2 coordinate) int {
+  return abs(c2.X - c1.X) + abs(c2.Y - c1.Y)
 }
 
-func shortestPathDistance(c1, c2 coordinate) int {
-  distance := 0
-
-  x, y := c1.X, c1.Y
-
-  for x != c2.X || y != c2.Y {
-    if y < c2.Y {
-      y++
-      distance++
-    } else if y > c2.Y {
-      y--
-      distance++
-    }
-
-    if x < c2.X {
-      x++
-      distance++
-    } else if x > c2.X {
-      x--
-      distance++
-    }
+func abs(i int) int {
+  if i < 0 {
+    return i * -1
   }
-
-  return distance
+  
+  return i
 }
 

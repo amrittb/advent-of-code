@@ -78,6 +78,7 @@ func main() {
 			},
 			11: {
 				1: twentythreedayeleven.SumOfShortestDistanceBetweenGalaxies,
+				2: twentythreedayeleven.SumOfShortestDistanceBetweenOlderGalaxies,
 			},
 
 		},
