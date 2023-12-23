@@ -18,6 +18,7 @@ import (
 	twentythreedaynine "github.com/amrittb/adventofcode/twentythree/daynine"
 	twentythreedayten "github.com/amrittb/adventofcode/twentythree/dayten"
 	twentythreedayeleven "github.com/amrittb/adventofcode/twentythree/dayeleven"
+	twentythreedaytwelve "github.com/amrittb/adventofcode/twentythree/daytwelve"
 )
 
 type Process func([]string) int
@@ -80,7 +81,10 @@ func main() {
 				1: twentythreedayeleven.SumOfShortestDistanceBetweenGalaxies,
 				2: twentythreedayeleven.SumOfShortestDistanceBetweenOlderGalaxies,
 			},
-
+			12: {
+				1: twentythreedaytwelve.SumOfPossibleArrangements,
+				2: twentythreedaytwelve.SumOfUnfoldedPossibleArrangements,
+			},
 		},
 	}
 
