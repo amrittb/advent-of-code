@@ -23,6 +23,7 @@ func SumOfPossibleArrangements(lines []string) int {
   return totalCount
 }
 
+// TODO
 func SumOfUnfoldedPossibleArrangements(lines []string) int {
   totalCount := 0
   for _, row := range lines {

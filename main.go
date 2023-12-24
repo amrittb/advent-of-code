@@ -19,6 +19,7 @@ import (
 	twentythreedayten "github.com/amrittb/adventofcode/twentythree/dayten"
 	twentythreedayeleven "github.com/amrittb/adventofcode/twentythree/dayeleven"
 	twentythreedaytwelve "github.com/amrittb/adventofcode/twentythree/daytwelve"
+	twentythreedaythirteen "github.com/amrittb/adventofcode/twentythree/daythirteen"
 )
 
 type Process func([]string) int
@@ -84,6 +85,9 @@ func main() {
 			12: {
 				1: twentythreedaytwelve.SumOfPossibleArrangements,
 				2: twentythreedaytwelve.SumOfUnfoldedPossibleArrangements,
+			},
+			13: {
+				1: twentythreedaythirteen.SummarizeReflectionPatterns,
 			},
 		},
 	}
