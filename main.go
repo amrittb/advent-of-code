@@ -88,6 +88,7 @@ func main() {
 			},
 			13: {
 				1: twentythreedaythirteen.SummarizeReflectionPatterns,
+				2: twentythreedaythirteen.SummarizeSmudgeFixedReflectionPatterns,
 			},
 		},
 	}
