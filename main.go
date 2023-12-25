@@ -20,6 +20,7 @@ import (
 	twentythreedayeleven "github.com/amrittb/adventofcode/twentythree/dayeleven"
 	twentythreedaytwelve "github.com/amrittb/adventofcode/twentythree/daytwelve"
 	twentythreedaythirteen "github.com/amrittb/adventofcode/twentythree/daythirteen"
+	twentythreedayfourteen "github.com/amrittb/adventofcode/twentythree/dayfourteen"
 )
 
 type Process func([]string) int
@@ -89,6 +90,9 @@ func main() {
 			13: {
 				1: twentythreedaythirteen.SummarizeReflectionPatterns,
 				2: twentythreedaythirteen.SummarizeSmudgeFixedReflectionPatterns,
+			},
+			14: {
+				1: twentythreedayfourteen.TotalLoadOnNorthBeams,
 			},
 		},
 	}
