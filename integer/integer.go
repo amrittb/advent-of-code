@@ -2,8 +2,8 @@ package integer
 
 import (
 	"log"
-	"strings"
 	"strconv"
+	"strings"
 	"unicode"
 )
 
@@ -45,36 +45,36 @@ func Pow(base, exponent int) int {
 
 	res := base
 	for i := 2; i <= exponent; i++ {
-			res *= base
+		res *= base
 	}
 	return res
 }
 
 func ConvertToIntSlice(s, sep string) []int {
-  ints := []int{}
-  intStrs := strings.Split(strings.Trim(s, " "), sep) 
-  for _, intStr := range intStrs {
-    intStr = strings.Trim(intStr, " ")
-    if intStr == "" {
-      continue
-    }
-    i, err := strconv.Atoi(intStr)
-    if err != nil {
-      log.Fatalln(err)
-    }
-    ints = append(ints, i)
-  }
+	ints := []int{}
+	intStrs := strings.Split(strings.Trim(s, " "), sep)
+	for _, intStr := range intStrs {
+		intStr = strings.Trim(intStr, " ")
+		if intStr == "" {
+			continue
+		}
+		i, err := strconv.Atoi(intStr)
+		if err != nil {
+			log.Fatalln(err)
+		}
+		ints = append(ints, i)
+	}
 
-  return ints
+	return ints
 }
 
 func TrimAndAtoi(s string) int {
-  i := 0
-  lineRune := []rune(s)
-  for _, r := range lineRune {
-    if unicode.IsDigit(r) {
-      i = i * 10 + int(r - '0')
-    }
-  }
-  return i
+	i := 0
+	lineRune := []rune(s)
+	for _, r := range lineRune {
+		if unicode.IsDigit(r) {
+			i = i*10 + int(r-'0')
+		}
+	}
+	return i
 }

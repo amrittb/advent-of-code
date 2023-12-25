@@ -17,6 +17,7 @@ import (
 	twentythreedayone "github.com/amrittb/adventofcode/twentythree/dayone"
 	twentythreedayseven "github.com/amrittb/adventofcode/twentythree/dayseven"
 	twentythreedaysix "github.com/amrittb/adventofcode/twentythree/daysix"
+	twentythreedaysixteen "github.com/amrittb/adventofcode/twentythree/daysixteen"
 	twentythreedayten "github.com/amrittb/adventofcode/twentythree/dayten"
 	twentythreedaythirteen "github.com/amrittb/adventofcode/twentythree/daythirteen"
 	twentythreedaythree "github.com/amrittb/adventofcode/twentythree/daythree"
@@ -98,6 +99,9 @@ func main() {
 			},
 			15: {
 				1: twentythreedayfifteen.SumOfSeqHashes,
+			},
+			16: {
+				1: twentythreedaysixteen.NumEnergizedTiles,
 			},
 		},
 	}
