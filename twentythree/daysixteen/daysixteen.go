@@ -2,6 +2,8 @@ package daysixteen
 
 import (
 	"errors"
+
+	"github.com/amrittb/adventofcode/integer"
 )
 
 type direction int
@@ -87,21 +89,62 @@ func (t *tile) Dir() direction {
 }
 
 func NumEnergizedTiles(lines []string) int {
-	// row -> col
-	visitedTiles := map[tile]bool{}
-	visitedCount := map[tileLocation]int{}
-
-	numRows := len(lines)
-	numCols := len(lines[0])
-	tiles := make([][]byte, numRows)
-
+	tiles := make([][]byte, len(lines))
 	for i, l := range lines {
 		tiles[i] = []byte(l)
 	}
 
+	return GetEnergizedTileCount(&tiles, NewTile(0, 0, RIGHT))
+}
+
+func MaxEnergizedTiles(lines []string) int {
+	tiles := make([][]byte, len(lines))
+	for i, l := range lines {
+		tiles[i] = []byte(l)
+	}
+
+	numRows := len(tiles)
+	numCols := len(tiles[0])
+
+	max := 0
+	// Top row
+	for c := 0; c < numCols; c++ {
+		startTile := NewTile(0, c, DOWN)
+		max = integer.Max(max, GetEnergizedTileCount(&tiles, startTile))
+	}
+
+	// Bottom row
+	for c := 0; c < numCols; c++ {
+		startTile := NewTile(numRows-1, c, UP)
+		max = integer.Max(max, GetEnergizedTileCount(&tiles, startTile))
+	}
+
+	// Left col
+	for r := 0; r < numRows; r++ {
+		startTile := NewTile(r, 0, RIGHT)
+		max = integer.Max(max, GetEnergizedTileCount(&tiles, startTile))
+	}
+
+	// Right col
+	for r := 0; r < numRows; r++ {
+		startTile := NewTile(r, numCols-1, LEFT)
+		max = integer.Max(max, GetEnergizedTileCount(&tiles, startTile))
+	}
+
+	return max
+}
+
+func GetEnergizedTileCount(tiles *[][]byte, startTile *tile) int {
+	numRows := len(*tiles)
+	numCols := len((*tiles)[0])
+
+	// row -> col
+	visitedTiles := map[tile]bool{}
+	visitedCount := map[tileLocation]int{}
+
 	stack := &tileStack{}
 
-	stack.Push(NewTile(0, 0, RIGHT))
+	stack.Push(startTile)
 
 	for !stack.IsEmpty() {
 		currTile, err := stack.Pop()
@@ -122,7 +165,7 @@ func NumEnergizedTiles(lines []string) int {
 		}
 		visitedCount[loc]++
 
-		next := findNextDirection(tiles[row][col], dir)
+		next := findNextDirection((*tiles)[row][col], dir)
 
 		for _, n := range next {
 			nextRow, nextCol := findNextTileLocation(row, col, n)

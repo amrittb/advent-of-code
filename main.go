@@ -102,6 +102,7 @@ func main() {
 			},
 			16: {
 				1: twentythreedaysixteen.NumEnergizedTiles,
+				2: twentythreedaysixteen.MaxEnergizedTiles,
 			},
 		},
 	}
