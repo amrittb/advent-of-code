@@ -7,20 +7,21 @@ import (
 	"log"
 	"os"
 
-	twentythreedayone "github.com/amrittb/adventofcode/twentythree/dayone"
-	twentythreedaytwo "github.com/amrittb/adventofcode/twentythree/daytwo"
-	twentythreedaythree "github.com/amrittb/adventofcode/twentythree/daythree"
-	twentythreedayfour "github.com/amrittb/adventofcode/twentythree/dayfour"
-	twentythreedayfive "github.com/amrittb/adventofcode/twentythree/dayfive"
-	twentythreedaysix "github.com/amrittb/adventofcode/twentythree/daysix"
-	twentythreedayseven "github.com/amrittb/adventofcode/twentythree/dayseven"
 	twentythreedayeight "github.com/amrittb/adventofcode/twentythree/dayeight"
-	twentythreedaynine "github.com/amrittb/adventofcode/twentythree/daynine"
-	twentythreedayten "github.com/amrittb/adventofcode/twentythree/dayten"
 	twentythreedayeleven "github.com/amrittb/adventofcode/twentythree/dayeleven"
-	twentythreedaytwelve "github.com/amrittb/adventofcode/twentythree/daytwelve"
-	twentythreedaythirteen "github.com/amrittb/adventofcode/twentythree/daythirteen"
+	twentythreedayfifteen "github.com/amrittb/adventofcode/twentythree/dayfifteen"
+	twentythreedayfive "github.com/amrittb/adventofcode/twentythree/dayfive"
+	twentythreedayfour "github.com/amrittb/adventofcode/twentythree/dayfour"
 	twentythreedayfourteen "github.com/amrittb/adventofcode/twentythree/dayfourteen"
+	twentythreedaynine "github.com/amrittb/adventofcode/twentythree/daynine"
+	twentythreedayone "github.com/amrittb/adventofcode/twentythree/dayone"
+	twentythreedayseven "github.com/amrittb/adventofcode/twentythree/dayseven"
+	twentythreedaysix "github.com/amrittb/adventofcode/twentythree/daysix"
+	twentythreedayten "github.com/amrittb/adventofcode/twentythree/dayten"
+	twentythreedaythirteen "github.com/amrittb/adventofcode/twentythree/daythirteen"
+	twentythreedaythree "github.com/amrittb/adventofcode/twentythree/daythree"
+	twentythreedaytwelve "github.com/amrittb/adventofcode/twentythree/daytwelve"
+	twentythreedaytwo "github.com/amrittb/adventofcode/twentythree/daytwo"
 )
 
 type Process func([]string) int
@@ -93,6 +94,10 @@ func main() {
 			},
 			14: {
 				1: twentythreedayfourteen.TotalLoadOnNorthBeams,
+				2: twentythreedayfourteen.TotalLoadOnNorthBeamsAfterCycles,
+			},
+			15: {
+				1: twentythreedayfifteen.SumOfSeqHashes,
 			},
 		},
 	}
