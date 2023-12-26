@@ -15,6 +15,7 @@ import (
 	twentythreedayfour "github.com/amrittb/adventofcode/twentythree/dayfour"
 	twentythreedayfourteen "github.com/amrittb/adventofcode/twentythree/dayfourteen"
 	twentythreedaynine "github.com/amrittb/adventofcode/twentythree/daynine"
+	twentythreedayninteen "github.com/amrittb/adventofcode/twentythree/dayninteen"
 	twentythreedayone "github.com/amrittb/adventofcode/twentythree/dayone"
 	twentythreedayseven "github.com/amrittb/adventofcode/twentythree/dayseven"
 	twentythreedayseventeen "github.com/amrittb/adventofcode/twentythree/dayseventeen"
@@ -112,6 +113,9 @@ func main() {
 			18: {
 				1: twentythreedayeighteen.VolumeOfLava,
 				2: twentythreedayeighteen.VolumeOfLavaFromHex,
+			},
+			19: {
+				1: twentythreedayninteen.SumOfRatingsOfAcceptedParts,
 			},
 		},
 	}
