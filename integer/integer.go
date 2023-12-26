@@ -7,6 +7,7 @@ import (
 	"unicode"
 )
 
+// Set of Integers
 type IntSet map[int]bool
 
 func (set *IntSet) Add(val int) {
@@ -21,6 +22,24 @@ func (set *IntSet) AddIfNotNil(val *int) {
 
 func (set *IntSet) Contains(val int) bool {
 	return (*set)[val]
+}
+
+// Pair of Integers
+type IntPair struct {
+	first  int
+	second int
+}
+
+func NewIntPair(first, second int) *IntPair {
+	return &IntPair{first: first, second: second}
+}
+
+func (p *IntPair) First() int {
+	return p.first
+}
+
+func (p *IntPair) Second() int {
+	return p.second
 }
 
 // Helper functions
@@ -48,6 +67,13 @@ func Pow(base, exponent int) int {
 		res *= base
 	}
 	return res
+}
+
+func Abs(n int) int {
+	if n < 0 {
+		return -n
+	}
+	return n
 }
 
 func ConvertToIntSlice(s, sep string) []int {

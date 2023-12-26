@@ -8,6 +8,7 @@ import (
 	"os"
 
 	twentythreedayeight "github.com/amrittb/adventofcode/twentythree/dayeight"
+	twentythreedayeighteen "github.com/amrittb/adventofcode/twentythree/dayeighteen"
 	twentythreedayeleven "github.com/amrittb/adventofcode/twentythree/dayeleven"
 	twentythreedayfifteen "github.com/amrittb/adventofcode/twentythree/dayfifteen"
 	twentythreedayfive "github.com/amrittb/adventofcode/twentythree/dayfive"
@@ -16,6 +17,7 @@ import (
 	twentythreedaynine "github.com/amrittb/adventofcode/twentythree/daynine"
 	twentythreedayone "github.com/amrittb/adventofcode/twentythree/dayone"
 	twentythreedayseven "github.com/amrittb/adventofcode/twentythree/dayseven"
+	twentythreedayseventeen "github.com/amrittb/adventofcode/twentythree/dayseventeen"
 	twentythreedaysix "github.com/amrittb/adventofcode/twentythree/daysix"
 	twentythreedaysixteen "github.com/amrittb/adventofcode/twentythree/daysixteen"
 	twentythreedayten "github.com/amrittb/adventofcode/twentythree/dayten"
@@ -103,6 +105,13 @@ func main() {
 			16: {
 				1: twentythreedaysixteen.NumEnergizedTiles,
 				2: twentythreedaysixteen.MaxEnergizedTiles,
+			},
+			17: {
+				1: twentythreedayseventeen.LeastHeatLoss,
+			},
+			18: {
+				1: twentythreedayeighteen.VolumeOfLava,
+				2: twentythreedayeighteen.VolumeOfLavaFromHex,
 			},
 		},
 	}
