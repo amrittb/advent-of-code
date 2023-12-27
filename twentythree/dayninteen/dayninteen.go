@@ -39,7 +39,7 @@ func SumOfRatingsOfAcceptedParts(lines []string) int {
 		workflows[name] = rules
 	}
 
-	acceptedParts := runWorkFlow(parts, workflows)
+	acceptedParts := runWorkflowsForParts(parts, workflows)
 
 	sum := 0
 	for _, p := range acceptedParts {
@@ -48,6 +48,32 @@ func SumOfRatingsOfAcceptedParts(lines []string) int {
 		}
 	}
 	return sum
+}
+
+func CountOfAcceptableCombinations(lines []string) int {
+	workflows := map[string][]rule{}
+
+	for _, line := range lines {
+		if line == "" {
+			break
+		}
+
+		name, rules := parseWorkflow(line)
+		workflows[name] = rules
+	}
+
+	accepted := part{
+		byte('x'): 4000,
+		byte('m'): 4000,
+		byte('a'): 4000,
+		byte('s'): 4000,
+	}
+
+	total := 1
+	for _, v := range accepted {
+		total *= v
+	}
+	return total
 }
 
 func parsePart(line string) part {
@@ -104,47 +130,51 @@ func parseWorkflow(line string) (string, []rule) {
 	return name, rules
 }
 
-func runWorkFlow(parts []part, workflows map[string][]rule) []part {
-	start := "in"
-	accepted := "A"
-	rejected := "R"
-
+func runWorkflowsForParts(parts []part, workflows map[string][]rule) []part {
 	acceptedParts := []part{}
 
 	for _, part := range parts {
-		// Always start in "in"
-		workflow := start
-		// Run until not accepted or rejected
-		for workflow != accepted && workflow != rejected {
-			rules := workflows[workflow]
-
-			for _, rul := range rules {
-				if rul.Predicate == nil {
-					workflow = rul.Next
-					break
-				}
-
-				pred := *rul.Predicate
-				if pred.Comparator == byte('<') {
-					if part[pred.CompareWith] < pred.ValueToCompare {
-						workflow = rul.Next
-						break
-					}
-				} else {
-					if part[pred.CompareWith] > pred.ValueToCompare {
-						workflow = rul.Next
-						break
-					}
-				}
-			}
-		}
-
-		if workflow == accepted {
+		if runWorkflows(part, workflows) {
 			acceptedParts = append(acceptedParts, part)
 		}
 	}
 
 	return acceptedParts
+}
+
+func runWorkflows(p part, workflows map[string][]rule) bool {
+	start := "in"
+	accepted := "A"
+	rejected := "R"
+
+	// Always start in "in"
+	workflow := start
+	// Run until not accepted or rejected
+	for workflow != accepted && workflow != rejected {
+		rules := workflows[workflow]
+
+		for _, rul := range rules {
+			if rul.Predicate == nil {
+				workflow = rul.Next
+				break
+			}
+
+			pred := *rul.Predicate
+			if pred.Comparator == byte('<') {
+				if p[pred.CompareWith] < pred.ValueToCompare {
+					workflow = rul.Next
+					break
+				}
+			} else {
+				if p[pred.CompareWith] > pred.ValueToCompare {
+					workflow = rul.Next
+					break
+				}
+			}
+		}
+	}
+
+	return workflow == accepted
 }
 
 func printWorkflows(workflows map[string][]rule) {

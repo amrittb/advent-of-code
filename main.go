@@ -116,6 +116,7 @@ func main() {
 			},
 			19: {
 				1: twentythreedayninteen.SumOfRatingsOfAcceptedParts,
+				2: twentythreedayninteen.CountOfAcceptableCombinations,
 			},
 		},
 	}
